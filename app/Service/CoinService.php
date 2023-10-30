@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Models\Coin;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Env;
 use Illuminate\Support\Facades\Http;
 
@@ -23,6 +24,9 @@ class CoinService
         $i = 0;
         foreach ($aCoins as $item) {
 
+            $first_historical_data = Carbon::parse($item['first_historical_data'])->toDateTimeString();
+            $last_historical_data = Carbon::parse($item['last_historical_data'])->toDateTimeString();
+
             $oCoin = Coin::query()->updateOrCreate(
                 [
                     'slug' => $item['slug']
@@ -32,8 +36,8 @@ class CoinService
                     'name' => $item['name'],
                     'symbol' => $item['symbol'],
                     'is_active' => $item['is_active'],
-                    'first_historical_data' => $item['first_historical_data'],
-                    'last_historical_data' => $item['last_historical_data'],
+                    'first_historical_data' => $first_historical_data,
+                    'last_historical_data' => $last_historical_data,
                     'platform' => $item['platform'] ? json_encode($item['platform']) : null
                 ]
             );

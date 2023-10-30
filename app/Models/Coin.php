@@ -15,8 +15,8 @@ class Coin extends Model
         'symbol',
         'slug',
         'is_active',
-        'first_historical_date',
-        'last_historical_date',
+        'first_historical_data',
+        'last_historical_data',
         'platform'
     ];
 

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('symbol');
             $table->string('slug');
             $table->boolean('is_active');
-            $table->string('first_historical_date');
-            $table->string('last_historical_date');
+            $table->dateTime('first_historical_data');
+            $table->dateTime('last_historical_data');
             $table->text('platform')->nullable();
             $table->timestamps();
         });
